@@ -108,7 +108,7 @@ class LinkedList{
         let currentNode = this.head;
         let nextNode = undefined;
 
-     for(let i = 0; i< this.length ; i++){
+     for(let i = 0; i < this.length ; i++){
          nextNode = currentNode
          console.log('list value is ' + i + ' ' , nextNode.value);
          currentNode = nextNode.next;
