@@ -76,7 +76,7 @@ class HashTable {
      
   }
   
-  var res = findFirstRecurringCharacter([2, 5,1, 2, 3, 5, 1 ,2, 4])
+  var res = findFirstRecurringCharacter([2, 5,5,4, 1, 2, 3, 5, 1 ,2, 4])
   //var res2 = findFirstRecurringCharacter([2, 1,1, 2, 3, 5, 1 ,2, 4])
   //var res3 = findFirstRecurringCharacter([2, 3,4, 5])
   console.log("\n found", res);
