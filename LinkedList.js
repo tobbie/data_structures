@@ -59,8 +59,7 @@ class LinkedList{
         let nextNode = undefined;
         let currentNode = this.head;
         let previousNode = undefined;
-        
-       
+           
         for(let i = 0 ; i < this.length; i++){
              nextNode = currentNode;
              if(i === index){
@@ -69,7 +68,6 @@ class LinkedList{
                  this.length++;
                  break;
              }
-
              previousNode = currentNode;
              if(nextNode.next === null)
              {
@@ -104,22 +102,80 @@ class LinkedList{
         
      }
 
-    printList(){
-        let currentNode = this.head;
-        let nextNode = undefined;
+     remove(index){
+         if(this._validateInsertIndex(index) === false){
+            return this;
+         }
 
-     for(let i = 0; i < this.length ; i++){
-         nextNode = currentNode
-         console.log('list value is ' + i + ' ' , nextNode.value);
-         currentNode = nextNode.next;
+         if(index === 0)
+         {
+             this._removeAtHead();
+         }
+         else if(index == this.length -1)
+         {
+             this._removeAtTail(index);
+         }
+         else
+         {
+              this._removeAtIndex(index);
+         }
+     }
+
+     _removeAtHead(){
+         let currentNode = this.head;
+         let nextNode = currentNode.next;
+         this.head = nextNode;
+         this.length--;
+         this.printList();
+         return this;
+     }
+
+     _removeAtTail(index){
+         let currentNode = this._traverseList(index-1);
+         currentNode.next = null;  
+         this.tail = currentNode;
+         this.length--;
+         this.printList();
+         return this;
+     }
+
+     _removeAtIndex(index)
+     { 
+         let previousNode = this._traverseList(index-1);
+         let nodeToRemove = previousNode.next;
+         let nextNode = nodeToRemove.next;
+         previousNode.next = nextNode;
+         this.length--;
+         this.printList();
+         return this;
 
      }
-     console.log('Length of list is', this.length);
-     console.log('-------End of list-------')
- }
 
+     _traverseList(index){
+         let currentNode = this.head;
+         let count = 0;
+         while(index !== count){
+             currentNode = currentNode.next;
+             count++;
+         }
+         return currentNode;
+     }
+
+    printList(){
+        let currentNode = this.head;
+         let listValues = [];
+      while(currentNode!== null)
+      {
+         listValues.push(currentNode.value);
+         currentNode = currentNode.next;
+      }
+      
     
-    
+      console.log(listValues);
+      console.log('Length of list is', this.length);
+      console.log(listValues);
+      console.log('-------End of list-------')
+  } 
 
 }
 
@@ -128,16 +184,20 @@ let  myList = new LinkedList(28);
 myList.append(7);
 myList.append(710);
 myList.append(90);
-myList.prepend(45);
+//myList.(45);
 
-console.log(myList);
-console.log('\n');
+myList.printList();
+//console.log('\n');
 
-let list1 =myList.insert(4, 102);
+//let list1 =myList.insert(4, 102);
 //let list2 = myList.insert(1, 50);
-list1.printList();
+//list1.printList();
 //list2.printList();
 
+//
+
+//myList.remove(0);
+myList.remove(3);
 
 
 
