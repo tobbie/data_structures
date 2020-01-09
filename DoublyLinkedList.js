@@ -1,17 +1,20 @@
 //It's all about manipulating pointers to objects in memory.
-//10 --> 18 --> 19 --->21 --> 4
-
+//10 --> <-----18---> null
+                  9
+//8---><---10 --> <<---18 ---> null
 class Node {
     constructor(value){
-        this.value = value;
-        this.next = null;
+        this.value =  value,
+        this.prev = null,
+        this. next = null
     }
 }
 
-class LinkedList{
+class DoublyLinkedList{
     constructor(value){
         this.head = {
             value: value,
+            previous : null,
             next : null
         }
 
@@ -21,20 +24,19 @@ class LinkedList{
 
     append(newItem) //this is possible becos tail and next will point to the same object in memoery, we chage the valu of tal.next to a new objwct and point tail to that new onject
     {
-        let newNode = new Node(newItem);
+        let newNode = new Node(newItem);     
+        newNode.previous = this.tail;
         this.tail.next = newNode;
         this.tail = newNode;
         this.length++
-        return this;      
-    }
-
-    reverse(){
-       
+        return this;        
     }
 
     prepend(newItem){
         let newNode = new Node(newItem);
-        newNode.next = this.head;
+        let firstNode = this.head;
+        firstNode.previous = newNode;
+        newNode.next = firstNode;
         this.head = newNode;
         this.length++
         return this;
@@ -171,6 +173,7 @@ class LinkedList{
       while(currentNode!== null)
       {
          listValues.push(currentNode.value);
+         
          currentNode = currentNode.next;
       }
       
@@ -179,21 +182,29 @@ class LinkedList{
       console.log('Length of list is', this.length);
       console.log(listValues);
       console.log('-------End of list-------')
-      return listValues;
   } 
 
 }
 
 
-let  myList = new LinkedList(28);
+let  myList = new DoublyLinkedList(28);
 myList.append(7);
-myList.append(710);
-myList.append(90);
-myList.append(6);
-//myList.(45);
+//myList.append(54);
+//myList.append(98);
+//myList.append(19);
+//myList.append(20);
 
-myList.reverse();
-//myList.printList();
+//myList.prepend(98);
+//myList.prepend(19);
+//myList.prepend(20);
+
+
+
+//myList.append(90);
+//myList.(45);
+console.log(myList);
+
+myList.printList();
 //console.log('\n');
 
 //let list1 =myList.insert(4, 102);
@@ -204,7 +215,7 @@ myList.reverse();
 //
 
 //myList.remove(0);
-//myList.remove(3);
+//yList.remove(3);
 
 
 
