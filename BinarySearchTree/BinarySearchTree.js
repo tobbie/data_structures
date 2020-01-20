@@ -72,7 +72,53 @@ class Node {
        }
        return currentNode;
     }
+
+    /** 
+
+    remove(value){
+        let foundNode = this.lookup(value);
+        
+        if(foundNode.right !== null){
+          let nextNode = foundNode.right;
+          while(nextNode !== null){
+            foundNode.value = nextNode.value;
+            
+            if(nextNode.right === null){
+              foundNode.right = null;
+              nextNode = nextNode.right;
+            }
+            else{
+              foundNode = nextNode
+              nextNode = nextNode.right;
+            }
+          }
+          console.log(this);
+          return this;
+          
+        }else if(foundNode.left !== null){
+           let nextNode = foundNode.left;
+           while (nextNode!==null){
+              foundNode.value = nextNode.value;
+              if(nextNode.right === null){
+                foundNode.right = null;
+              }else{
+                foundNode = nextNode
+                nextNode = nextNode.right;
+              }
+                        
+           }
+
+          return this;
+        }
+        else{
+           foundNode.value = 0;
+          //console.log(x);
+          return this;
+        }
+    }
     // remove
+
+    */
   }
   
   const tree = new BinarySearchTree();
@@ -87,8 +133,11 @@ tree.insert(1)
 var res = JSON.stringify(traverse(tree.root))
 console.log(res);
 
-var result = tree.lookup(1);
-console.log(result.value);
+var res3 = tree.remove(170);
+res4 = JSON.stringify(traverse(tree.root));
+console.log(res4);
+//var result = tree.lookup(1);
+//console.log(result.value);
 
 
 //JSON.stringify(traverse(tree.root))
