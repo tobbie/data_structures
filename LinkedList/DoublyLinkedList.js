@@ -5,7 +5,7 @@
 class Node {
     constructor(value){
         this.value =  value,
-        this.prev = null,
+        this.previous = null,
         this. next = null
     }
 }
@@ -41,7 +41,34 @@ class DoublyLinkedList{
         this.length++
         return this;
     }
+    
+    reverse(){
+       
+        let currentNode = this.tail.previous;
+        let newHead = this.tail;
+        let leaderNode = currentNode;
+        
 
+        while(currentNode !== null)
+        {
+            let previousNode = currentNode.next;
+            let nextNode = currentNode.previous
+
+            currentNode.next = nextNode
+            currentNode.previous = previousNode;
+            
+            if(currentNode.next === null){
+                this.tail = currentNode;
+            }
+            currentNode = currentNode.next;
+        }
+
+        newHead.previous = null;
+        newHead.next = leaderNode;
+        this.head = newHead;
+        
+
+    }
     insert(index, value){
 
         let listResult = undefined;
@@ -189,6 +216,15 @@ class DoublyLinkedList{
 
 let  myList = new DoublyLinkedList(28);
 myList.append(7);
+myList.append(9);
+myList.append(10);
+console.log(myList);
+
+myList.printList();
+myList.reverse();
+console.log(myList);
+console.log('\n see reversed list');
+myList.printList();
 //myList.append(54);
 //myList.append(98);
 //myList.append(19);
@@ -202,9 +238,9 @@ myList.append(7);
 
 //myList.append(90);
 //myList.(45);
-console.log(myList);
+//console.log(myList);
 
-myList.printList();
+//myList.printList();
 //console.log('\n');
 
 //let list1 =myList.insert(4, 102);
